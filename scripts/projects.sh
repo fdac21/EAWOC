@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 
 #extracting data from json file
+#ProjectID;NumCommits;NumBlobs;NumOriginalBlobs;NumFiles;NumAuthors;NumForks;NumActiveMon;LatestCommitDate
 file="../data/projects_T.json";
 l=$(cat $file | jq length);
 for i in $(seq 0 $(($l - 1))); do
