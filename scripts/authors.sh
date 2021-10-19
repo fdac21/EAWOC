@@ -11,6 +11,7 @@ for i in {0..127}; do
 done
 
 #consolidating in a single table
+#author;Author
 end=64;
 for i in {1..7}; do
     for j in $(seq 0 $(($end - 1))); do
@@ -21,5 +22,14 @@ for i in {1..7}; do
     end=$(($end/2));
     rm ../data/authors$i.*;
 done;
-gzip < ../data/authors8.0 > ../data/authors.csv.gz;
+cat ../data/authors8.0 |
+~/lookup/getValues -f a2A |
+gzip > ../data/authors.csv.gz;
 rm ../data/authors8.0;
+
+#
+zcat ../data/authors.csv.gz | 
+cut -d\; -f2 | 
+~/lookup/lsort | 
+uniq | 
+gzip > ../data/Authors.csv.gz
